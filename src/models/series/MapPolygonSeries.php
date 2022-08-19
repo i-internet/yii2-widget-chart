@@ -7,9 +7,6 @@
 namespace simialbi\yii2\chart\models\series;
 
 
-use ReflectionClass;
-use ReflectionException;
-use ReflectionProperty;
 use simialbi\yii2\chart\models\map\MapPolygon;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
@@ -24,13 +21,13 @@ class MapPolygonSeries extends MapSeries
 
     /**
      * {@inheritDoc}
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function getExpression(): string
+    public function getExpression()
     {
         $className = StringHelper::basename(static::class);
-        $r = new ReflectionClass($this);
-        $properties = $r->getProperties(ReflectionProperty::IS_PUBLIC);
+        $r = new \ReflectionClass($this);
+        $properties = $r->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         $js = "var {$this->varName} = new " . static::NAME_SPACE . ".$className();\n";
 
@@ -44,7 +41,7 @@ class MapPolygonSeries extends MapSeries
 
             if ($key === 'heatRules' && is_array($value)) {
                 foreach ($value as $item) {
-                    $js .= "{$this->varName}.$key.push(" . Json::htmlEncode($item) . ');';
+                    $js .= "{$this->varName}.$key.push(" . Json::htmlEncode($item) . ");";
                 }
                 continue;
             }

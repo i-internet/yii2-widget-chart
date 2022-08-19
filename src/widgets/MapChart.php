@@ -40,7 +40,7 @@ class MapChart extends Chart
     /**
      * {@inheritDoc}
      */
-    public function registerPlugin(?string $pluginName = null, ?string $selector = null)
+    public function registerPlugin($pluginName = null, $selector = null)
     {
         $asset = MapChartGeodataAsset::register($this->view);
         $asset->js = [$this->geodata . '.js'];

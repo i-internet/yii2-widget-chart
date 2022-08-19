@@ -33,7 +33,7 @@ class Chart extends Widget
      * @throws \ReflectionException
      * @throws InvalidConfigException
      */
-    public function init(): void
+    public function init()
     {
         parent::init();
 
@@ -50,7 +50,7 @@ class Chart extends Widget
     /**
      * {@inheritDoc}
      */
-    public function run(): string
+    public function run()
     {
         Html::addCssClass($this->options, 'sa-widget-chart');
         $container = Html::tag('div', '', $this->options);
